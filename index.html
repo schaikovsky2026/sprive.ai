@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sprivé.ai | Your Private AI Solution</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Montserrat provides that sharp, geometric high-fashion feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            /* Slow, mysterious entry */
+            animation: elegantFadeIn 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            z-index: 10;
+        }
+
+        .brand {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 1.2rem; /* Extreme tracking like SLP */
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            white-space: nowrap;
+        }
+
+        /* Styling for the accent to ensure it doesn't break tracking */
+        .brand span {
+            margin-right: -0.2rem;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            font-weight: 200;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 5rem;
+        }
+
+        .contact-link {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 300;
+            letter-spacing: 0.35rem;
+            text-decoration: none;
+            color: var(--text-color);
+            text-transform: uppercase;
+            transition: all 0.5s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #ffffff;
+            transition: all 0.5s ease;
+            transform: translateX(-50%);
+            opacity: 0.5;
+        }
+
+        .contact-link:hover {
+            letter-spacing: 0.45rem;
+        }
+
+        .contact-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes elegantFadeIn {
+            0% {
+                opacity: 0;
+                letter-spacing: 2rem;
+                filter: blur(12px);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        /* Subtle background texture */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #111111 0%, #000000 100%);
+            z-index: 1;
+        }
+
+        /* Responsive scaling */
+        @media (max-width: 768px) {
+            .brand {
+                font-size: 1.6rem;
+                letter-spacing: 0.6rem;
+            }
+            .tagline {
+                font-size: 0.65rem;
+                letter-spacing: 0.3rem;
+            }
+            .contact-link {
+                font-size: 0.6rem;
+                letter-spacing: 0.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <main class="container">
+        <h1 class="brand">sprivé.ai</h1>
+        <p class="tagline">Your Private AI Solution</p>
+        <a href="mailto:contact@sprive.ai" class="contact-link">contact@sprive.ai</a>
+    </main>
+
+    <script>
+        // Subtle interaction for the "exclusive" feel
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            document.querySelector('.container').style.transform = 
+                `translate3d(${moveX}px, ${moveY}px, 0)`;
+        });
+
+        // Prevention of right-click to maintain the 'private' mysterious feel
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</body>
+</html>
