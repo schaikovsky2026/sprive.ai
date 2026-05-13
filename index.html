@@ -9,8 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0c1424;
-            --text-color: #f0f2f7;
+            --bg-color: #000000;
+            --text-color: #f5f1e8;
+            --accent-gold: #c9a961;
             --font-main: 'Montserrat', sans-serif;
         }
 
@@ -35,29 +36,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, #18223a 0%, #0c1424 100%);
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
             z-index: 1;
             pointer-events: none;
         }
 
-        /* CINEMATIC LAYER 1 — mouse-tracking soft glow */
-        .mouse-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            background: radial-gradient(
-                circle 600px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(255, 255, 255, 0.06) 0%,
-                rgba(255, 255, 255, 0) 70%
-            );
-            mix-blend-mode: screen;
-        }
-
-        /* CINEMATIC LAYER 2 — film grain overlay */
+        /* CINEMATIC LAYER — film grain overlay */
         .grain {
             position: fixed;
             top: -10%;
@@ -105,11 +89,11 @@
             color: var(--text-color);
             background: linear-gradient(
                 100deg,
-                #f0f2f7 0%,
-                #f0f2f7 35%,
-                rgba(240, 242, 247, 0.45) 50%,
-                #f0f2f7 65%,
-                #f0f2f7 100%
+                #f5f1e8 0%,
+                #f5f1e8 35%,
+                #c9a961 50%,
+                #f5f1e8 65%,
+                #f5f1e8 100%
             );
             background-size: 300% 100%;
             background-position: 100% 0;
@@ -168,7 +152,7 @@
         .divider {
             width: 40px;
             height: 1px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(201, 169, 97, 0.6);
             margin: 0 auto 6rem;
         }
 
@@ -226,10 +210,10 @@
             height: 1px;
             bottom: 0;
             left: 50%;
-            background-color: #ffffff;
+            background-color: var(--accent-gold);
             transition: width 0.5s ease;
             transform: translateX(-50%);
-            opacity: 0.6;
+            opacity: 0.85;
         }
 
         .service-card:hover .label::after {
@@ -292,12 +276,13 @@
             color: var(--text-color);
             text-transform: uppercase;
             padding: 1rem 2.4rem;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            transition: border-color 0.5s ease, letter-spacing 0.5s ease;
+            border: 1px solid rgba(201, 169, 97, 0.5);
+            transition: border-color 0.5s ease, color 0.5s ease, letter-spacing 0.5s ease;
         }
 
         .cta-button:hover {
-            border-color: rgba(255, 255, 255, 0.95);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
             letter-spacing: 0.5rem;
         }
 
@@ -401,7 +386,6 @@
 </head>
 <body>
     <div class="overlay"></div>
-    <div class="mouse-glow"></div>
     <div class="grain"></div>
 
     <section class="hero">
@@ -465,15 +449,11 @@
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const heroContainer = document.querySelector('.hero .container');
-        const docEl = document.documentElement;
         let lastOrientationTime = 0;
 
-        // Desktop mouse — drives glow position + hero parallax
+        // Desktop mouse — drives subtle hero parallax (no glow anymore)
         document.addEventListener('mousemove', (e) => {
-            // If tilt is actively driving things, ignore mouse (some hybrid devices fire both)
             if (Date.now() - lastOrientationTime < 1500) return;
-            docEl.style.setProperty('--mouse-x', e.clientX + 'px');
-            docEl.style.setProperty('--mouse-y', e.clientY + 'px');
             if (!prefersReducedMotion && heroContainer) {
                 const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
                 const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
@@ -481,19 +461,12 @@
             }
         });
 
-        // Mobile tilt — drives same glow position + hero parallax via gyroscope
+        // Mobile tilt — same parallax via gyroscope
         function handleTilt(event) {
             if (event.gamma === null || event.beta === null) return;
             lastOrientationTime = Date.now();
-            // Clamp tilts to a comfortable usable range
-            const gamma = Math.max(-45, Math.min(45, event.gamma));   // L/R tilt
-            const beta  = Math.max(0,   Math.min(90, event.beta));    // F/B tilt
-            // Map to viewport position (0–100%) for the glow
-            const xPercent = ((gamma + 45) / 90) * 100;
-            const yPercent = (beta / 90) * 100;
-            docEl.style.setProperty('--mouse-x', xPercent + '%');
-            docEl.style.setProperty('--mouse-y', yPercent + '%');
-            // Wordmark parallax — same feel as desktop mouse parallax
+            const gamma = Math.max(-45, Math.min(45, event.gamma));
+            const beta  = Math.max(0,   Math.min(90, event.beta));
             if (!prefersReducedMotion && heroContainer) {
                 const moveX = (gamma / 45) * 8;
                 const moveY = ((beta - 45) / 45) * 8;
