@@ -91,17 +91,20 @@
             opacity: 1;
         }
 
-        /* SCROLL REVEAL */
+        /* SCROLL REVEAL — fade + blur + slide up */
         .reveal {
             opacity: 0;
-            transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1),
-                        filter 2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(40px);
+            transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        filter 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
             filter: blur(12px);
         }
 
         .reveal.is-visible {
             opacity: 1;
             filter: blur(0);
+            transform: translateY(0);
         }
 
         .divider {
@@ -275,15 +278,6 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .hero .container {
-                animation: none;
-                opacity: 1;
-            }
-            .reveal {
-                transition: none;
-                filter: none;
-                opacity: 1;
-            }
             .tagline-line {
                 transition: none;
             }
@@ -399,7 +393,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="reveal">
         <p>Bangkok, Thailand</p>
         <p>&copy; 2026 SPRIVÉ.AI</p>
     </footer>
@@ -434,7 +428,6 @@
         const taglines = [
             'Your Private AI Solution',
             'Bespoke AI for Your Business',
-            'Private AI. Built for One.',
             'Your Data. Your Model. Your AI.'
         ];
         const taglineEl = document.querySelector('.tagline-line');
