@@ -1,0 +1,23 @@
+# Sensitive reference materials — never deploy publicly.
+# These contain bank account, client identity, pricing, and internal notes.
+contract.md
+proposal-long.md
+origin.md
+CLAUDE.md
+README.md
+plan.md
+
+# Orphan multi-page templates kept locally for reference but not deployed.
+# Site currently lives as single-page; these stay out of the public site until
+# explicitly re-introduced (see CLAUDE.md Architecture).
+services.html
+work.html
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

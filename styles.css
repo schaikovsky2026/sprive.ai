@@ -1,0 +1,357 @@
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --font-main: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    min-height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #111111 0%, #000000 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+section {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12vh 20px;
+}
+
+/* Hero */
+.hero .container {
+    text-align: center;
+    opacity: 0;
+    animation: elegantFadeIn 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.brand {
+    width: 560px;
+    max-width: 100%;
+    margin: 0 auto 2.5rem;
+    line-height: 0;
+}
+
+.brand svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    transform: scale(1.06);
+    animation: brandSettle 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.brand text {
+    font-family: var(--font-main);
+    font-weight: 300;
+    font-size: 44px;
+    letter-spacing: 19px;
+    fill: var(--text-color);
+}
+
+.tagline {
+    font-size: 0.85rem;
+    font-weight: 200;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 540px;
+    margin: 0 auto;
+    height: 1.2rem;
+}
+
+.tagline-line {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.tagline-line.is-visible {
+    opacity: 1;
+}
+
+/* Scroll-revealed sections share this base */
+.reveal {
+    opacity: 0;
+    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1),
+                filter   2s cubic-bezier(0.4, 0, 0.2, 1),
+                letter-spacing 2s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: blur(12px);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    filter: blur(0);
+}
+
+.divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 auto 6rem;
+}
+
+/* Manifesto */
+.manifesto .inner {
+    max-width: 720px;
+    text-align: center;
+}
+
+.manifesto p {
+    font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    line-height: 2.4;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.manifesto p + p {
+    margin-top: 2.4rem;
+}
+
+/* Services trio (homepage) */
+.services .inner {
+    max-width: 1100px;
+    width: 100%;
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+}
+
+.service-card {
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.service-card .label {
+    display: inline-block;
+    position: relative;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 6px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.service-card .label::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    background-color: #ffffff;
+    transition: width 0.5s ease;
+    transform: translateX(-50%);
+    opacity: 0.6;
+}
+
+.service-card:hover .label::after {
+    width: 100%;
+}
+
+.service-card .body {
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.05rem;
+    line-height: 2;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 28ch;
+    margin: 0 auto 1.5rem;
+}
+
+/* Selected Work pull block */
+.selected-work .inner {
+    max-width: 720px;
+    text-align: center;
+}
+
+.work-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2.4rem;
+}
+
+.work-quote {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    line-height: 2.2;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 2.8rem;
+}
+
+/* Closing / CTA */
+.closing .inner {
+    text-align: center;
+}
+
+.closing-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 3rem;
+}
+
+.cta-button {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.4rem;
+    text-decoration: none;
+    color: var(--text-color);
+    text-transform: uppercase;
+    padding: 1rem 2.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: border-color 0.5s ease, letter-spacing 0.5s ease, color 0.5s ease;
+}
+
+.cta-button:hover {
+    border-color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.5rem;
+}
+
+footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 3rem 20px 4rem;
+}
+
+footer p {
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+footer p + p {
+    margin-top: 0.6rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+@keyframes elegantFadeIn {
+    0% {
+        opacity: 0;
+        filter: blur(12px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes brandSettle {
+    to {
+        transform: scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero .container {
+        animation: none;
+        opacity: 1;
+    }
+    .brand svg {
+        animation: none;
+        transform: none;
+    }
+    .reveal {
+        transition: none;
+        filter: none;
+        opacity: 1;
+    }
+    .tagline-line {
+        transition: none;
+    }
+    .cta-button,
+    .service-card .label::after {
+        transition: none;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 8vh 20px;
+    }
+    .brand {
+        width: 320px;
+    }
+    .brand text {
+        font-size: 28px;
+        letter-spacing: 10px;
+    }
+    .tagline {
+        font-size: 0.65rem;
+        letter-spacing: 0.3rem;
+    }
+    .manifesto p {
+        font-size: 0.9rem;
+        letter-spacing: 0.1rem;
+        line-height: 2.2;
+    }
+    .manifesto p + p {
+        margin-top: 2rem;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    .service-card .label {
+        font-size: 0.85rem;
+    }
+    .service-card .body {
+        font-size: 0.9rem;
+        max-width: 32ch;
+    }
+    .work-quote {
+        font-size: 0.9rem;
+        line-height: 2;
+    }
+    .cta-button {
+        font-size: 0.65rem;
+        letter-spacing: 0.3rem;
+        padding: 0.9rem 1.8rem;
+    }
+    .cta-button:hover {
+        letter-spacing: 0.4rem;
+    }
+    .divider {
+        margin-bottom: 4rem;
+    }
+}

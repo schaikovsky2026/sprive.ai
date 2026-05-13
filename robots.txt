@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Belt-and-braces: these files are gitignored and should not be served,
+# but block crawlers in case they ever leak via any path.
+Disallow: /contract.md
+Disallow: /proposal-long.md
+Disallow: /origin.md
+Disallow: /CLAUDE.md
+Disallow: /README.md
+Disallow: /plan.md
+
+Sitemap: https://sprive.ai/sitemap.xml
