@@ -12,6 +12,9 @@ services.html
 work.html
 original.html
 
+# Local backup snapshots — never deploy
+*.backup
+
 # OS / editor noise
 .DS_Store
 Thumbs.db
