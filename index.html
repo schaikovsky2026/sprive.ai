@@ -30,17 +30,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
         /* CINEMATIC LAYER — film grain overlay */
         .grain {
             position: fixed;
@@ -385,7 +374,6 @@
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
     <div class="grain"></div>
 
     <section class="hero">
@@ -507,8 +495,7 @@
         // Tagline rotation — works even with prefers-reduced-motion (instant swap if so)
         const taglines = [
             'Your Private AI Solution',
-            'Bespoke AI for Your Business',
-            'Your Data. Your Model. Your AI.'
+            'Bespoke AI for Your Business'
         ];
         const taglineEl = document.querySelector('.tagline-line');
         let taglineIndex = 0;
