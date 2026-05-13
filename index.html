@@ -3,127 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPRIVÉ.AI — Bespoke AI for Your Business</title>
-    <meta name="description" content="SPRIVÉ.AI is a private AI consultancy in Bangkok, Thailand. We build automation workflows, internal tools, and AI-powered business systems — delivered personally, built fast.">
-    <meta name="theme-color" content="#000000">
-    <link rel="canonical" href="https://sprive.ai/">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000000'/><text x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='18' font-weight='300' letter-spacing='-0.5' fill='%23ffffff' text-anchor='middle'>S</text></svg>">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sprive.ai/">
-    <meta property="og:title" content="SPRIVÉ.AI — Bespoke AI for Your Business">
-    <meta property="og:description" content="A private AI consultancy. Bespoke automation, internal tools, and business systems. Delivered personally. Built fast.">
-    <meta property="og:site_name" content="SPRIVÉ.AI">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="SPRIVÉ.AI — Bespoke AI for Your Business">
-    <meta name="twitter:description" content="Bespoke AI consultancy. Automation, internal tools, business systems — built for one.">
-
+    <title>SPRIVÉ.AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "SPRIVÉ.AI",
-        "alternateName": "SPRIVE.AI",
-        "url": "https://sprive.ai/",
-        "description": "Private AI consultancy specialising in automation workflows, internal tools, and business process optimisation. Bespoke systems, delivered personally.",
-        "founder": {
-            "@type": "Person",
-            "name": "Somchai Khamsuwan"
-        },
-        "areaServed": [
-            { "@type": "Country", "name": "Thailand" },
-            { "@type": "Place", "name": "Remote, worldwide" }
-        ],
-        "serviceType": [
-            "AI automation workflows",
-            "Custom internal tools",
-            "Business process optimisation"
-        ],
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Bangkok",
-            "addressCountry": "TH"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "contact@sprive.ai",
-            "contactType": "sales"
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --font-main: 'Montserrat', sans-serif;
         }
-    }
-    </script>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            animation: elegantFadeIn 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            z-index: 10;
+            width: 600px;
+            max-width: 100%;
+        }
+
+        .brand {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            margin-right: -0.2rem;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            font-weight: 200;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 5rem;
+            height: 1.2rem;
+        }
+
+        .tagline-line {
+            display: inline-block;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .tagline-line.is-visible {
+            opacity: 1;
+        }
+
+        .contact-link {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 300;
+            letter-spacing: 0.35rem;
+            text-decoration: none;
+            color: var(--text-color);
+            text-transform: uppercase;
+            transition: all 0.5s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #ffffff;
+            transition: all 0.5s ease;
+            transform: translateX(-50%);
+            opacity: 0.5;
+        }
+
+        .contact-link:hover {
+            letter-spacing: 0.45rem;
+        }
+
+        .contact-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes elegantFadeIn {
+            0% {
+                opacity: 0;
+                letter-spacing: 2rem;
+                filter: blur(12px);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #111111 0%, #000000 100%);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .brand {
+                font-size: 1.6rem;
+                letter-spacing: 0.6rem;
+            }
+            .tagline {
+                font-size: 0.65rem;
+                letter-spacing: 0.3rem;
+            }
+            .contact-link {
+                font-size: 0.6rem;
+                letter-spacing: 0.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="overlay"></div>
 
-    <section class="hero">
-        <main class="container">
-            <h1 class="brand">
-                <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SPRIVÉ.AI">
-                    <title>SPRIVÉ.AI</title>
-                    <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">SPRIVÉ.AI</text>
-                </svg>
-            </h1>
-            <p class="tagline"><span class="tagline-line is-visible">Your Private AI Solution</span></p>
-        </main>
-    </section>
+    <main class="container">
+        <h1 class="brand">SPRIVÉ.AI</h1>
+        <p class="tagline"><span class="tagline-line is-visible">Your Private AI Solution</span></p>
+        <a href="mailto:contact@sprive.ai" class="contact-link">contact@sprive.ai</a>
+    </main>
 
-    <section class="manifesto reveal">
-        <div class="inner">
-            <div class="divider"></div>
-            <p>Off-the-shelf AI is built for everyone.<br>We build for one.</p>
-            <p>Every system is engineered to your data,<br>your operations, your standards.</p>
-            <p>Speed without compromise.<br>Privacy as the foundation.</p>
-        </div>
-    </section>
+    <script>
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    <section class="services reveal">
-        <div class="inner">
-            <div class="divider"></div>
-            <h2 class="visually-hidden" style="position:absolute;left:-9999px;">Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="label">Automation Workflows</div>
-                    <p class="body">Recurring manual work, eliminated. Tasks that drained hours each week now run themselves.</p>
-                </div>
-                <div class="service-card">
-                    <div class="label">Internal Tools</div>
-                    <p class="body">Mobile and desktop systems built around how your team actually works. PWAs, dashboards, on-site capture.</p>
-                </div>
-                <div class="service-card">
-                    <div class="label">Process Optimisation</div>
-                    <p class="body">Existing operations made faster, leaner, and fully auditable — without ripping up what already works.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            document.querySelector('.container').style.transform =
+                `translate3d(${moveX}px, ${moveY}px, 0)`;
+        });
 
-    <section class="selected-work reveal">
-        <div class="inner">
-            <div class="divider"></div>
-            <p class="work-eyebrow">Selected Work</p>
-            <p class="work-quote">A bespoke PWA built for a Bangkok-based field service operator. Replaced Excel scheduling, paper reports, and office-only attendance with one integrated system — recovering engineer hours, reducing overtime cost, eliminating manual errors, accelerating invoice cycles, and bringing full audit visibility to operations.</p>
-        </div>
-    </section>
+        document.addEventListener('contextmenu', event => event.preventDefault());
 
-    <section class="closing reveal">
-        <div class="inner">
-            <div class="divider"></div>
-            <p class="closing-eyebrow">Start a Project</p>
-            <a href="mailto:contact@sprive.ai?subject=SPRIV%C3%89.AI%20%E2%80%94%20Project%20enquiry" class="cta-button">contact@sprive.ai</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>Bangkok, Thailand</p>
-        <p>&copy; 2026 SPRIVÉ.AI</p>
-    </footer>
-
-    <script src="script.js"></script>
+        const taglines = [
+            'Your Private AI Solution',
+            'Bespoke AI for Your Business',
+            'Private AI. Built for One.',
+            'Your Data. Your Model. Your AI.'
+        ];
+        const taglineEl = document.querySelector('.tagline-line');
+        let taglineIndex = 0;
+        setInterval(() => {
+            if (prefersReducedMotion) {
+                taglineIndex = (taglineIndex + 1) % taglines.length;
+                taglineEl.textContent = taglines[taglineIndex];
+            } else {
+                taglineEl.classList.remove('is-visible');
+                setTimeout(() => {
+                    taglineIndex = (taglineIndex + 1) % taglines.length;
+                    taglineEl.textContent = taglines[taglineIndex];
+                    taglineEl.classList.add('is-visible');
+                }, 1200);
+            }
+        }, 6000);
+    </script>
 </body>
 </html>
