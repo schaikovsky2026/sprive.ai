@@ -21,26 +21,40 @@
         }
 
         body, html {
-            height: 100%;
+            min-height: 100%;
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .container {
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #111111 0%, #000000 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        section {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12vh 20px;
+        }
+
+        /* HERO — original.html text logo */
+        .hero .container {
             text-align: center;
-            padding: 20px;
             opacity: 0;
             animation: elegantFadeIn 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            z-index: 10;
-            width: 600px;
-            max-width: 100%;
         }
 
         .brand {
@@ -62,7 +76,8 @@
             letter-spacing: 0.5rem;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 5rem;
+            max-width: 540px;
+            margin: 0 auto;
             height: 1.2rem;
         }
 
@@ -76,20 +91,74 @@
             opacity: 1;
         }
 
-        .contact-link {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 300;
-            letter-spacing: 0.35rem;
-            text-decoration: none;
-            color: var(--text-color);
-            text-transform: uppercase;
-            transition: all 0.5s ease;
-            position: relative;
-            padding-bottom: 5px;
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1),
+                        filter 2s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: blur(12px);
         }
 
-        .contact-link::after {
+        .reveal.is-visible {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 0 auto 6rem;
+        }
+
+        /* MANIFESTO */
+        .manifesto .inner {
+            max-width: 720px;
+            text-align: center;
+        }
+
+        .manifesto p {
+            font-weight: 300;
+            font-size: 1rem;
+            letter-spacing: 0.15rem;
+            line-height: 2.4;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .manifesto p + p {
+            margin-top: 2.4rem;
+        }
+
+        /* SERVICES TRIO */
+        .services .inner {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .service-card {
+            text-align: center;
+        }
+
+        .service-card .label {
+            display: inline-block;
+            position: relative;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            padding-bottom: 6px;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .service-card .label::after {
             content: '';
             position: absolute;
             width: 0;
@@ -97,19 +166,102 @@
             bottom: 0;
             left: 50%;
             background-color: #ffffff;
-            transition: all 0.5s ease;
+            transition: width 0.5s ease;
             transform: translateX(-50%);
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
-        .contact-link:hover {
-            letter-spacing: 0.45rem;
-        }
-
-        .contact-link:hover::after {
+        .service-card:hover .label::after {
             width: 100%;
         }
 
+        .service-card .body {
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.05rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 28ch;
+            margin: 0 auto;
+        }
+
+        /* SELECTED WORK */
+        .selected-work .inner {
+            max-width: 720px;
+            text-align: center;
+        }
+
+        .work-eyebrow {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.4rem;
+        }
+
+        .work-quote {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.1rem;
+            line-height: 2.2;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* CLOSING / CTA */
+        .closing .inner {
+            text-align: center;
+        }
+
+        .closing-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.4rem;
+            text-decoration: none;
+            color: var(--text-color);
+            text-transform: uppercase;
+            padding: 1rem 2.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: border-color 0.5s ease, letter-spacing 0.5s ease;
+        }
+
+        .cta-button:hover {
+            border-color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 3rem 20px 4rem;
+        }
+
+        footer p {
+            font-size: 0.65rem;
+            font-weight: 300;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        footer p + p {
+            margin-top: 0.6rem;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        /* ANIMATIONS */
         @keyframes elegantFadeIn {
             0% {
                 opacity: 0;
@@ -122,17 +274,34 @@
             }
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #111111 0%, #000000 100%);
-            z-index: 1;
+        @media (prefers-reduced-motion: reduce) {
+            .hero .container {
+                animation: none;
+                opacity: 1;
+            }
+            .reveal {
+                transition: none;
+                filter: none;
+                opacity: 1;
+            }
+            .tagline-line {
+                transition: none;
+            }
+            .cta-button,
+            .service-card .label::after {
+                transition: none;
+            }
         }
 
+        /* MOBILE */
         @media (max-width: 768px) {
+            section {
+                min-height: auto;
+                padding: 8vh 20px;
+            }
+            .hero {
+                min-height: 100vh;
+            }
             .brand {
                 font-size: 1.6rem;
                 letter-spacing: 0.6rem;
@@ -141,9 +310,36 @@
                 font-size: 0.65rem;
                 letter-spacing: 0.3rem;
             }
-            .contact-link {
-                font-size: 0.6rem;
-                letter-spacing: 0.2rem;
+            .manifesto p {
+                font-size: 0.9rem;
+                letter-spacing: 0.1rem;
+                line-height: 2.2;
+            }
+            .manifesto p + p {
+                margin-top: 2rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            .service-card .body {
+                font-size: 0.9rem;
+                max-width: 32ch;
+            }
+            .work-quote {
+                font-size: 0.9rem;
+                line-height: 2;
+            }
+            .cta-button {
+                font-size: 0.65rem;
+                letter-spacing: 0.3rem;
+                padding: 0.9rem 1.8rem;
+            }
+            .cta-button:hover {
+                letter-spacing: 0.4rem;
+            }
+            .divider {
+                margin-bottom: 4rem;
             }
         }
     </style>
@@ -151,24 +347,90 @@
 <body>
     <div class="overlay"></div>
 
-    <main class="container">
-        <h1 class="brand">SPRIVÉ.AI</h1>
-        <p class="tagline"><span class="tagline-line is-visible">Your Private AI Solution</span></p>
-        <a href="mailto:contact@sprive.ai" class="contact-link">contact@sprive.ai</a>
-    </main>
+    <section class="hero">
+        <main class="container">
+            <h1 class="brand">SPRIVÉ.AI</h1>
+            <p class="tagline"><span class="tagline-line is-visible">Your Private AI Solution</span></p>
+        </main>
+    </section>
+
+    <section class="manifesto reveal">
+        <div class="inner">
+            <div class="divider"></div>
+            <p>Off-the-shelf AI is built for everyone.<br>We build for one.</p>
+            <p>Every system is engineered to your data,<br>your operations, your standards.</p>
+            <p>Speed without compromise.<br>Privacy as the foundation.</p>
+        </div>
+    </section>
+
+    <section class="services reveal">
+        <div class="inner">
+            <div class="divider"></div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="label">Automation Workflows</div>
+                    <p class="body">Recurring manual work, eliminated. Tasks that drained hours each week now run themselves.</p>
+                </div>
+                <div class="service-card">
+                    <div class="label">Internal Tools</div>
+                    <p class="body">Mobile and desktop systems built around how your team actually works. PWAs, dashboards, on-site capture.</p>
+                </div>
+                <div class="service-card">
+                    <div class="label">Process Optimisation</div>
+                    <p class="body">Existing operations made faster, leaner, and fully auditable — without ripping up what already works.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="selected-work reveal">
+        <div class="inner">
+            <div class="divider"></div>
+            <p class="work-eyebrow">Selected Work</p>
+            <p class="work-quote">A bespoke PWA built for a Bangkok-based field service operator. Replaced Excel scheduling, paper reports, and office-only attendance with one integrated system — recovering engineer hours, reducing overtime cost, eliminating manual errors, accelerating invoice cycles, and bringing full audit visibility to operations.</p>
+        </div>
+    </section>
+
+    <section class="closing reveal">
+        <div class="inner">
+            <div class="divider"></div>
+            <p class="closing-eyebrow">Start a Project</p>
+            <a href="mailto:contact@sprive.ai" class="cta-button">contact@sprive.ai</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Bangkok, Thailand</p>
+        <p>&copy; 2026 SPRIVÉ.AI</p>
+    </footer>
 
     <script>
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            document.querySelector('.container').style.transform =
-                `translate3d(${moveX}px, ${moveY}px, 0)`;
-        });
+        // Mouse parallax — hero only
+        if (!prefersReducedMotion) {
+            const heroContainer = document.querySelector('.hero .container');
+            document.addEventListener('mousemove', (e) => {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+                heroContainer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+            });
+        }
 
         document.addEventListener('contextmenu', event => event.preventDefault());
 
+        // Scroll-triggered fade-in for sections below the fold
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Tagline rotation — works even with prefers-reduced-motion (instant swap if so)
         const taglines = [
             'Your Private AI Solution',
             'Bespoke AI for Your Business',
