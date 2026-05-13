@@ -34,14 +34,19 @@ const taglines = [
     'Your Data. Your Model. Your AI.'
 ];
 const taglineEl = document.querySelector('.tagline-line');
-if (taglineEl && !prefersReducedMotion) {
+if (taglineEl) {
     let taglineIndex = 0;
     setInterval(() => {
-        taglineEl.classList.remove('is-visible');
-        setTimeout(() => {
+        if (prefersReducedMotion) {
             taglineIndex = (taglineIndex + 1) % taglines.length;
             taglineEl.textContent = taglines[taglineIndex];
-            taglineEl.classList.add('is-visible');
-        }, 1200);
+        } else {
+            taglineEl.classList.remove('is-visible');
+            setTimeout(() => {
+                taglineIndex = (taglineIndex + 1) % taglines.length;
+                taglineEl.textContent = taglines[taglineIndex];
+                taglineEl.classList.add('is-visible');
+            }, 1200);
+        }
     }, 6000);
 }
