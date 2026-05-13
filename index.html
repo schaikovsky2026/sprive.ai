@@ -464,10 +464,14 @@
     <script>
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Mouse-tracking glow + hero parallax — share a single mousemove listener
         const heroContainer = document.querySelector('.hero .container');
         const docEl = document.documentElement;
+        let lastOrientationTime = 0;
+
+        // Desktop mouse — drives glow position + hero parallax
         document.addEventListener('mousemove', (e) => {
+            // If tilt is actively driving things, ignore mouse (some hybrid devices fire both)
+            if (Date.now() - lastOrientationTime < 1500) return;
             docEl.style.setProperty('--mouse-x', e.clientX + 'px');
             docEl.style.setProperty('--mouse-y', e.clientY + 'px');
             if (!prefersReducedMotion && heroContainer) {
@@ -476,6 +480,43 @@
                 heroContainer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
             }
         });
+
+        // Mobile tilt — drives same glow position + hero parallax via gyroscope
+        function handleTilt(event) {
+            if (event.gamma === null || event.beta === null) return;
+            lastOrientationTime = Date.now();
+            // Clamp tilts to a comfortable usable range
+            const gamma = Math.max(-45, Math.min(45, event.gamma));   // L/R tilt
+            const beta  = Math.max(0,   Math.min(90, event.beta));    // F/B tilt
+            // Map to viewport position (0–100%) for the glow
+            const xPercent = ((gamma + 45) / 90) * 100;
+            const yPercent = (beta / 90) * 100;
+            docEl.style.setProperty('--mouse-x', xPercent + '%');
+            docEl.style.setProperty('--mouse-y', yPercent + '%');
+            // Wordmark parallax — same feel as desktop mouse parallax
+            if (!prefersReducedMotion && heroContainer) {
+                const moveX = (gamma / 45) * 8;
+                const moveY = ((beta - 45) / 45) * 8;
+                heroContainer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+            }
+        }
+
+        if (typeof DeviceOrientationEvent !== 'undefined') {
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                // iOS 13+ — must be triggered by a user gesture; first touch grants/denies
+                document.addEventListener('touchstart', async () => {
+                    try {
+                        const result = await DeviceOrientationEvent.requestPermission();
+                        if (result === 'granted') {
+                            window.addEventListener('deviceorientation', handleTilt);
+                        }
+                    } catch (e) { /* user denied or API failed — page works fine without tilt */ }
+                }, { once: true, passive: true });
+            } else {
+                // Android / older iOS — no permission needed
+                window.addEventListener('deviceorientation', handleTilt);
+            }
+        }
 
         document.addEventListener('contextmenu', event => event.preventDefault());
 
