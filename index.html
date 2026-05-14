@@ -61,11 +61,79 @@
             padding: 12vh 20px;
         }
 
-        /* HERO — original.html text logo */
+        /* HERO — text logo + atmospheric background.
+           Uses the same image as the breaks for unified atmosphere; this
+           framing shows the full composition (centered, normal zoom). */
+        .hero {
+            background-color: var(--bg-color);
+            background-image:
+                url('img/break-2.jpeg'),
+                radial-gradient(ellipse 80% 60% at 35% 45%, rgba(80, 60, 25, 0.45) 0%, transparent 70%),
+                radial-gradient(ellipse 80% 60% at 70% 70%, rgba(40, 30, 15, 0.35) 0%, transparent 60%);
+            background-size: cover, 100% 100%, 100% 100%;
+            background-position: center, center, center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 65% 55% at center 50%, rgba(0, 0, 0, 0.55) 0%, transparent 75%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.55) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
         .hero .container {
             text-align: center;
             opacity: 0;
             animation: elegantFadeIn 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* IMAGE-BREAK — atmospheric visual breath between text sections */
+        .image-break {
+            position: relative;
+            z-index: 10;
+            min-height: 30vh;
+            background-color: var(--bg-color);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .image-break::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, transparent 50%, rgba(0, 0, 0, 0.35) 100%);
+            pointer-events: none;
+        }
+
+        /* Both breaks use the same source image (same atmosphere)
+           but different position + zoom so they read as distinct angles. */
+        .image-break-1 {
+            background-image:
+                url('img/break-2.jpeg'),
+                radial-gradient(ellipse at 30% 50%, rgba(80, 60, 25, 0.3) 0%, transparent 60%),
+                linear-gradient(135deg, #1a1410 0%, #050300 100%);
+            background-size: 140% auto, cover, cover;
+            background-position: center 25%, center, center;
+        }
+
+        .image-break-2 {
+            background-image:
+                url('img/break-2.jpeg'),
+                radial-gradient(ellipse at 70% 50%, rgba(60, 50, 80, 0.22) 0%, transparent 60%),
+                linear-gradient(135deg, #14141a 0%, #050508 100%);
+            background-size: cover, cover, cover;
+            background-position: center 75%, center, center;
         }
 
         .brand {
@@ -90,6 +158,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: brandShimmer 9s ease-in-out infinite;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 24px rgba(0, 0, 0, 0.5));
         }
 
         @keyframes brandShimmer {
@@ -106,10 +175,11 @@
             font-weight: 200;
             letter-spacing: 0.5rem;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             max-width: 540px;
             margin: 0 auto;
             height: 1.2rem;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 0, 0, 0.5);
         }
 
         .tagline-line {
@@ -331,6 +401,9 @@
             .hero {
                 min-height: 100vh;
             }
+            .image-break {
+                min-height: 20vh;
+            }
             .brand {
                 font-size: 1.6rem;
                 letter-spacing: 0.6rem;
@@ -392,6 +465,8 @@
         </div>
     </section>
 
+    <section class="image-break image-break-1 reveal" aria-hidden="true"></section>
+
     <section class="services reveal">
         <div class="inner">
             <div class="divider"></div>
@@ -411,6 +486,8 @@
             </div>
         </div>
     </section>
+
+    <section class="image-break image-break-2 reveal" aria-hidden="true"></section>
 
     <section class="selected-work reveal">
         <div class="inner">
