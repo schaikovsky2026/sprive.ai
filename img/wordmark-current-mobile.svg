@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 70" preserveAspectRatio="xMidYMid meet" role="img" aria-label="SPRIVÉ.AI">
+  <title>SPRIVÉ.AI — mobile proportions</title>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&amp;display=swap');</style>
+    <linearGradient id="goldShimmerM" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#f5f1e8"/>
+      <stop offset="35%"  stop-color="#f5f1e8"/>
+      <stop offset="50%"  stop-color="#c9a961"/>
+      <stop offset="65%"  stop-color="#f5f1e8"/>
+      <stop offset="100%" stop-color="#f5f1e8"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="70" fill="#000000"/>
+  <text x="180" y="45"
+        font-family="Montserrat, Helvetica, Arial, sans-serif"
+        font-weight="300"
+        font-size="24"
+        letter-spacing="9"
+        fill="url(#goldShimmerM)"
+        text-anchor="middle">SPRIVÉ.AI</text>
+</svg>

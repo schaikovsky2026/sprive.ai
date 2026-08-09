@@ -16,6 +16,9 @@ original.html
 *.backup
 .image-originals/
 
+# Briefs / handoffs for sister projects (kept local for reference, never deploy)
+BRIEF-*.md
+
 # Image folder docs (the images themselves DO deploy)
 img/README.md
 

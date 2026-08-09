@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="SPRIVÉ.AI">
+  <title>SPRIVÉ.AI</title>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&amp;display=swap');</style>
+  </defs>
+  <rect width="600" height="100" fill="#000000"/>
+  <text x="300" y="65"
+        font-family="Montserrat, Helvetica, Arial, sans-serif"
+        font-weight="300"
+        font-size="40"
+        letter-spacing="16"
+        fill="#ffffff"
+        text-anchor="middle">SPRIVÉ.AI</text>
+</svg>
