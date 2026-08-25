@@ -3,7 +3,6 @@ Allow: /
 
 # Belt-and-braces: these files are gitignored and should not be served,
 # but block crawlers in case they ever leak via any path.
-Disallow: /arthai/
 Disallow: /contract.md
 Disallow: /proposal-long.md
 Disallow: /origin.md
