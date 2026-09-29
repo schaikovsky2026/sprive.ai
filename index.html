@@ -3,16 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPRIVÉ.AI</title>
+    <title>SPRIVÉ.AI — Private AI systems, built for one business</title>
+    <meta name="description" content="SPRIVÉ.AI is an AI studio that builds private systems for businesses — automation workflows, internal tools and process optimisation — and runs its own products, including จำไมBot.">
+    <link rel="canonical" href="https://sprive.ai/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sprive.ai/">
+    <meta property="og:title" content="SPRIVÉ.AI — Your Private AI Solution">
+    <meta property="og:description" content="An AI studio that builds private systems — and runs its own products.">
+    <meta property="og:image" content="https://sprive.ai/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://sprive.ai/img/og-image.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #000000;
             --text-color: #f5f1e8;
             --accent-gold: #c9a961;
+            --jammai-mint: #6ee7a0;
+            --line: rgba(245, 241, 232, 0.14);
             --font-main: 'Montserrat', sans-serif;
+            --font-thai: 'Kanit', sans-serif;
+            --gutter: clamp(24px, 9.7vw, 140px);
         }
 
         * {
@@ -54,27 +72,32 @@
         section {
             position: relative;
             z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 12vh 20px;
+            padding: 16vh var(--gutter);
         }
 
-        /* HERO — text logo + atmospheric background.
-           Uses the same image as the breaks for unified atmosphere; this
-           framing shows the full composition (centered, normal zoom). */
+        .eyebrow {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+        }
+
+        .rule-top {
+            border-top: 1px solid var(--line);
+        }
+
+        /* HERO — left-aligned statement over the atmospheric image */
         .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             background-color: var(--bg-color);
-            background-image:
-                url('img/break-2.jpeg'),
-                radial-gradient(ellipse 80% 60% at 35% 45%, rgba(80, 60, 25, 0.45) 0%, transparent 70%),
-                radial-gradient(ellipse 80% 60% at 70% 70%, rgba(40, 30, 15, 0.35) 0%, transparent 60%);
-            background-size: cover, 100% 100%, 100% 100%;
-            background-position: center, center, center;
+            background-image: url('img/break-2.jpeg');
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             overflow: hidden;
-            position: relative;
         }
 
         .hero::before {
@@ -82,76 +105,32 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse 65% 55% at center 50%, rgba(0, 0, 0, 0.55) 0%, transparent 75%),
-                linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.55) 100%);
+                linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.1) 100%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
             pointer-events: none;
             z-index: 1;
         }
 
         .hero .container {
-            text-align: center;
-            opacity: 0;
-            animation: elegantFadeIn 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             position: relative;
             z-index: 2;
-        }
-
-        /* IMAGE-BREAK — atmospheric visual breath between text sections */
-        .image-break {
-            position: relative;
-            z-index: 10;
-            min-height: 30vh;
-            background-color: var(--bg-color);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            overflow: hidden;
-        }
-
-        .image-break::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, transparent 50%, rgba(0, 0, 0, 0.35) 100%);
-            pointer-events: none;
-        }
-
-        /* Both breaks use the same source image (same atmosphere)
-           but different position + zoom so they read as distinct angles. */
-        .image-break-1 {
-            background-image:
-                url('img/break-2.jpeg'),
-                radial-gradient(ellipse at 30% 50%, rgba(80, 60, 25, 0.3) 0%, transparent 60%),
-                linear-gradient(135deg, #1a1410 0%, #050300 100%);
-            background-size: 140% auto, cover, cover;
-            background-position: center 25%, center, center;
-        }
-
-        .image-break-2 {
-            background-image:
-                url('img/break-2.jpeg'),
-                radial-gradient(ellipse at 70% 50%, rgba(60, 50, 80, 0.22) 0%, transparent 60%),
-                linear-gradient(135deg, #14141a 0%, #050508 100%);
-            background-size: cover, cover, cover;
-            background-position: center 75%, center, center;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-width: 880px;
+            opacity: 0;
+            animation: elegantFadeIn 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .brand {
-            font-size: 2.8rem;
+            align-self: flex-start;
+            font-size: 1.375rem;
             font-weight: 300;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            margin-bottom: 2.5rem;
             white-space: nowrap;
             color: var(--text-color);
-            background: linear-gradient(
-                100deg,
-                #f5f1e8 0%,
-                #f5f1e8 35%,
-                #c9a961 50%,
-                #f5f1e8 65%,
-                #f5f1e8 100%
-            );
+            background: linear-gradient(100deg, #f5f1e8 0%, #f5f1e8 35%, #c9a961 50%, #f5f1e8 65%, #f5f1e8 100%);
             background-size: 300% 100%;
             background-position: 100% 0;
             -webkit-background-clip: text;
@@ -166,18 +145,20 @@
             100%      { background-position: -100% 0; }
         }
 
-        .brand span {
-            margin-right: -0.2rem;
+        .hero-statement {
+            font-size: clamp(2.1rem, 4.45vw, 4rem);
+            font-weight: 200;
+            line-height: 1.2;
+            letter-spacing: 0.01em;
+            text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
         }
 
         .tagline {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 200;
-            letter-spacing: 0.5rem;
+            letter-spacing: 0.5em;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.95);
-            max-width: 540px;
-            margin: 0 auto;
             height: 1.2rem;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 0, 0, 0.5);
         }
@@ -208,58 +189,158 @@
             transform: translateY(0);
         }
 
-        .divider {
-            width: 40px;
-            height: 1px;
-            background: rgba(201, 169, 97, 0.6);
-            margin: 0 auto 6rem;
+        /* PRODUCTS WE RUN */
+        .products-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 4rem;
         }
 
-        /* MANIFESTO */
-        .manifesto .inner {
-            max-width: 720px;
-            text-align: center;
-        }
-
-        .manifesto p {
+        .products-count {
+            font-size: 0.75rem;
             font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(245, 241, 232, 0.88);
+        }
+
+        .product {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .product-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .product-id {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .product-id img {
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+        }
+
+        .product-name {
+            font-family: var(--font-thai);
+            font-size: 2.75rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .product-status {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--jammai-mint);
+        }
+
+        .product-tagline {
+            font-family: var(--font-thai);
+            font-size: 1.375rem;
+            font-weight: 300;
+            color: rgba(245, 241, 232, 0.92);
+        }
+
+        .product-body {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.85;
+            color: rgba(245, 241, 232, 0.92);
+        }
+
+        .product-cta {
+            align-self: flex-start;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #000000;
+            background: var(--accent-gold);
+            padding: 1.25rem 2rem;
+            transition: background 0.5s ease, letter-spacing 0.5s ease;
+        }
+
+        .product-cta:hover {
+            background: var(--text-color);
+            letter-spacing: 0.35em;
+        }
+
+        .product-traits {
+            border: 1px solid var(--line);
+        }
+
+        .trait {
+            padding: 2rem 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .trait + .trait {
+            border-top: 1px solid var(--line);
+        }
+
+        .trait-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+        }
+
+        .trait-body {
             font-size: 1rem;
-            letter-spacing: 0.15rem;
-            line-height: 2.4;
-            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+            line-height: 1.7;
+            color: rgba(245, 241, 232, 0.9);
         }
 
-        .manifesto p + p {
-            margin-top: 2.4rem;
+        /* BESPOKE WORK */
+        .bespoke-intro {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 4.5rem;
         }
 
-        /* SERVICES TRIO */
-        .services .inner {
-            max-width: 1100px;
-            width: 100%;
-            text-align: center;
+        .bespoke-statement {
+            max-width: 900px;
+            font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+            font-weight: 200;
+            line-height: 1.35;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4rem;
-        }
-
-        .service-card {
-            text-align: center;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 3rem;
+            margin-bottom: 4.5rem;
         }
 
         .service-card .label {
             display: inline-block;
             position: relative;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             font-weight: 400;
-            letter-spacing: 0.3rem;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             padding-bottom: 6px;
-            color: rgba(255, 255, 255, 1);
         }
 
         .service-card .label::after {
@@ -268,10 +349,9 @@
             width: 0;
             height: 1px;
             bottom: 0;
-            left: 50%;
+            left: 0;
             background-color: var(--accent-gold);
             transition: width 0.5s ease;
-            transform: translateX(-50%);
             opacity: 0.85;
         }
 
@@ -280,97 +360,105 @@
         }
 
         .service-card .body {
-            font-size: 0.85rem;
+            font-size: 0.9375rem;
             font-weight: 300;
-            letter-spacing: 0.05rem;
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 28ch;
-            margin: 0 auto;
+            line-height: 1.85;
+            color: rgba(245, 241, 232, 0.9);
         }
 
-        /* SELECTED WORK */
-        .selected-work .inner {
-            max-width: 720px;
-            text-align: center;
+        .cases {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2rem;
         }
 
-        .work-eyebrow {
+        .case {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            padding: 2.75rem;
+            background: #0b0b0b;
+            border: 1px solid rgba(245, 241, 232, 0.12);
+        }
+
+        .case-eyebrow {
             font-size: 0.7rem;
             font-weight: 400;
-            letter-spacing: 0.5rem;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 2.4rem;
+            color: var(--accent-gold);
         }
 
-        .work-quote {
-            font-size: 1rem;
+        .case-title {
+            font-size: 1.5rem;
             font-weight: 300;
-            letter-spacing: 0.1rem;
-            line-height: 2.2;
-            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.4;
+        }
+
+        .case-body {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            line-height: 1.85;
+            color: rgba(245, 241, 232, 0.9);
         }
 
         /* CLOSING / CTA */
-        .closing .inner {
-            text-align: center;
+        .closing {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
         }
 
-        .closing-eyebrow {
-            font-size: 0.75rem;
-            font-weight: 300;
-            letter-spacing: 0.5rem;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 3rem;
+        .closing-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .closing-statement {
+            font-size: clamp(1.75rem, 3.05vw, 2.75rem);
+            font-weight: 200;
+            line-height: 1.3;
+        }
+
+        .closing-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1.25rem;
         }
 
         .cta-button {
             display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 400;
-            letter-spacing: 0.4rem;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
             text-decoration: none;
             color: var(--text-color);
-            text-transform: uppercase;
-            padding: 1rem 2.4rem;
-            border: 1px solid rgba(201, 169, 97, 0.5);
+            padding: 1.35rem 2.5rem;
+            border: 1px solid rgba(245, 241, 232, 0.5);
             transition: border-color 0.5s ease, color 0.5s ease, letter-spacing 0.5s ease;
         }
 
         .cta-button:hover {
             border-color: var(--accent-gold);
             color: var(--accent-gold);
-            letter-spacing: 0.5rem;
+            letter-spacing: 0.2em;
         }
 
-        /* FOOTER */
-        footer {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 3rem 20px 4rem;
-        }
-
-        footer p {
-            font-size: 0.65rem;
+        .closing-meta {
+            font-size: 0.75rem;
             font-weight: 300;
-            letter-spacing: 0.3rem;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        footer p + p {
-            margin-top: 0.6rem;
-            color: rgba(255, 255, 255, 0.65);
+            color: rgba(245, 241, 232, 0.88);
         }
 
         /* ANIMATIONS */
         @keyframes elegantFadeIn {
             0% {
                 opacity: 0;
-                letter-spacing: 2rem;
                 filter: blur(12px);
             }
             100% {
@@ -383,10 +471,9 @@
             .grain {
                 animation: none;
             }
-            .tagline-line {
-                transition: none;
-            }
+            .tagline-line,
             .cta-button,
+            .product-cta,
             .service-card .label::after {
                 transition: none;
             }
@@ -395,53 +482,99 @@
         /* MOBILE */
         @media (max-width: 768px) {
             section {
-                min-height: auto;
-                padding: 8vh 20px;
+                padding: 10vh 24px;
             }
             .hero {
-                min-height: 100vh;
+                align-items: flex-end;
+                padding-bottom: 12vh;
+                background-position: 62% center;
             }
-            .image-break {
-                min-height: 20vh;
+            .hero::before {
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.9) 100%);
+            }
+            .hero .container {
+                gap: 1.75rem;
             }
             .brand {
-                font-size: 1.6rem;
-                letter-spacing: 0.3em;
+                font-size: 1.05rem;
+            }
+            .hero-statement {
+                font-size: 2.1rem;
+                line-height: 1.25;
             }
             .tagline {
-                font-size: 0.65rem;
-                letter-spacing: 0.3rem;
+                font-size: 0.625rem;
+                letter-spacing: 0.35em;
             }
-            .manifesto p {
-                font-size: 0.9rem;
-                letter-spacing: 0.1rem;
-                line-height: 2.2;
+            .products-head {
+                margin-bottom: 2.5rem;
             }
-            .manifesto p + p {
-                margin-top: 2rem;
+            .products-count {
+                display: none;
+            }
+            .product {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .product-id img {
+                width: 72px;
+                height: 72px;
+                border-radius: 17px;
+            }
+            .product-name {
+                font-size: 2rem;
+            }
+            .product-tagline {
+                font-size: 1.125rem;
+            }
+            .product-body {
+                font-size: 0.9375rem;
+            }
+            .product-cta {
+                align-self: stretch;
+                text-align: center;
+            }
+            .trait {
+                padding: 1.25rem 1.25rem;
+            }
+            .trait-body {
+                font-size: 0.875rem;
             }
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 4rem;
+                gap: 2.75rem;
+                margin-bottom: 3rem;
             }
-            .service-card .body {
-                font-size: 0.9rem;
-                max-width: 32ch;
+            .cases {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
-            .work-quote {
-                font-size: 0.9rem;
-                line-height: 2;
+            .case {
+                padding: 1.75rem 1.5rem;
+            }
+            .case-title {
+                font-size: 1.25rem;
+            }
+            .case-body {
+                font-size: 0.875rem;
+            }
+            .closing {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 2rem;
+            }
+            .closing-right {
+                align-items: stretch;
             }
             .cta-button {
-                font-size: 0.65rem;
-                letter-spacing: 0.3rem;
-                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+                text-align: center;
+                padding: 1.1rem 1.25rem;
             }
-            .cta-button:hover {
-                letter-spacing: 0.4rem;
-            }
-            .divider {
-                margin-bottom: 4rem;
+            .closing-meta {
+                font-size: 0.6875rem;
+                letter-spacing: 0.3em;
+                line-height: 2;
             }
         }
     </style>
@@ -452,63 +585,89 @@
     <section class="hero">
         <main class="container">
             <h1 class="brand">SPRIVÉ.AI</h1>
+            <p class="hero-statement">An AI studio that builds private systems — and runs its own products.</p>
             <p class="tagline"><span class="tagline-line is-visible">Your Private AI Solution</span></p>
         </main>
     </section>
 
-    <section class="manifesto reveal">
-        <div class="inner">
-            <div class="divider"></div>
-            <p>Off-the-shelf AI is built for everyone.<br>We build for one.</p>
-            <p>Every system is engineered to your data,<br>your operations, your standards.</p>
-            <p>Speed without compromise.<br>Privacy as the foundation.</p>
+    <section class="products reveal">
+        <div class="products-head">
+            <h2 class="eyebrow">Products we run</h2>
+            <p class="products-count">01 / Live</p>
         </div>
-    </section>
-
-    <section class="image-break image-break-1 reveal" aria-hidden="true"></section>
-
-    <section class="services reveal">
-        <div class="inner">
-            <div class="divider"></div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="label">Automation Workflows</div>
-                    <p class="body">Recurring manual work, eliminated. Tasks that drained hours each week now run themselves.</p>
+        <div class="product">
+            <div class="product-main">
+                <div class="product-id">
+                    <img src="img/jammai-icon.png" alt="จำไมBot icon" width="96" height="96">
+                    <div>
+                        <h3 class="product-name" lang="th">จำไมBot</h3>
+                        <span class="product-status">● Live · Thailand</span>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="label">Internal Tools</div>
-                    <p class="body">Mobile and desktop systems built around how your team actually works. PWAs, dashboards, on-site capture.</p>
+                <p class="product-tagline" lang="th">ถาม-จำ-ตอบ ได้เริสเลยละ</p>
+                <p class="product-body">An AI assistant for LINE Official Accounts. It answers a shop's customers around the clock, remembers every customer, answers only from the shop's own information, and hands over to staff the moment it's unsure.</p>
+                <a href="https://jammai.sprive.ai" class="product-cta">jammai.sprive.ai →</a>
+            </div>
+            <div class="product-traits">
+                <div class="trait">
+                    <p class="trait-label">Answers</p>
+                    <p class="trait-body">Around the clock, from the shop's own information only.</p>
                 </div>
-                <div class="service-card">
-                    <div class="label">Process Optimisation</div>
-                    <p class="body">Existing operations made faster, leaner, and fully auditable — without ripping up what already works.</p>
+                <div class="trait">
+                    <p class="trait-label">Remembers</p>
+                    <p class="trait-body">Every customer, across every conversation.</p>
+                </div>
+                <div class="trait">
+                    <p class="trait-label">Hands over</p>
+                    <p class="trait-body">To staff the moment it's unsure — never guesses.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="image-break image-break-2 reveal" aria-hidden="true"></section>
-
-    <section class="selected-work reveal">
-        <div class="inner">
-            <div class="divider"></div>
-            <p class="work-eyebrow">Selected Work</p>
-            <p class="work-quote">A bespoke PWA built for a Bangkok-based field service operator. Replaced Excel scheduling, paper reports, and office-only attendance with one integrated system — recovering engineer hours, reducing overtime cost, eliminating manual errors, accelerating invoice cycles, and bringing full audit visibility to operations.</p>
+    <section class="bespoke rule-top reveal">
+        <div class="bespoke-intro">
+            <h2 class="eyebrow">Bespoke work</h2>
+            <p class="bespoke-statement">Off-the-shelf AI is built for everyone. We build for one — engineered to your data, your operations, your standards.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="label">Automation Workflows</h3>
+                <p class="body">Recurring manual work, eliminated. Tasks that drained hours each week now run themselves.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="label">Internal Tools</h3>
+                <p class="body">Mobile and desktop systems built around how your team actually works. PWAs, dashboards, on-site capture.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="label">Process Optimisation</h3>
+                <p class="body">Existing operations made faster, leaner, and fully auditable — without ripping up what already works.</p>
+            </div>
+        </div>
+        <div class="cases">
+            <article class="case">
+                <p class="case-eyebrow">Case · Field Service</p>
+                <h3 class="case-title">One system in place of spreadsheets, paper and office-only attendance</h3>
+                <p class="case-body">A bespoke PWA for a Bangkok-based field service operator — recovering engineer hours, reducing overtime cost, eliminating manual errors, accelerating invoice cycles, and bringing full audit visibility to operations.</p>
+            </article>
+            <article class="case">
+                <p class="case-eyebrow">Case · Clinic Operations</p>
+                <h3 class="case-title">A clinic's whole day, run from one private system</h3>
+                <p class="case-body">For an aesthetic clinic: appointments, treatment packages with remaining sessions tracked automatically, stock, receipts and accounting — patient data handled privacy-first, access by role.</p>
+            </article>
         </div>
     </section>
 
-    <section class="closing reveal">
-        <div class="inner">
-            <div class="divider"></div>
-            <p class="closing-eyebrow">Start a Project</p>
+    <section class="closing rule-top reveal">
+        <div class="closing-left">
+            <h2 class="eyebrow">Start a Project</h2>
+            <p class="closing-statement">Speed without compromise.<br>Privacy as the foundation.</p>
+        </div>
+        <div class="closing-right">
             <a href="mailto:contact@sprive.ai" class="cta-button">contact@sprive.ai</a>
+            <p class="closing-meta">Bangkok · Working worldwide · &copy; 2026 SPRIVÉ.AI</p>
         </div>
     </section>
-
-    <footer class="reveal">
-        <p>Bangkok, Thailand</p>
-        <p>&copy; 2026 SPRIVÉ.AI</p>
-    </footer>
 
     <script>
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -516,7 +675,7 @@
         const heroContainer = document.querySelector('.hero .container');
         let lastOrientationTime = 0;
 
-        // Desktop mouse — drives subtle hero parallax (no glow anymore)
+        // Desktop mouse — drives subtle hero parallax
         document.addEventListener('mousemove', (e) => {
             if (Date.now() - lastOrientationTime < 1500) return;
             if (!prefersReducedMotion && heroContainer) {
@@ -566,7 +725,7 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.25 });
+        }, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
         // Tagline rotation — works even with prefers-reduced-motion (instant swap if so)
